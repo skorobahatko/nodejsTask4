@@ -35,5 +35,15 @@ module.exports = {
         } catch (e) {
             res.json(e.message)
         }
+    },
+    updateCarById: async (req, res) => {
+        const {id} = req.params;
+        const newCar = req.body.model;
+        try {
+            const car = await carService.updateById(id, newCar)
+            res.json(car);
+        } catch (e) {
+            res.json(e.message)
+        }
     }
 };

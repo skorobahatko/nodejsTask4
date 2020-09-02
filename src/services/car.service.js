@@ -29,6 +29,15 @@ module.exports = {
                 }
             }}
         )
+    },
+    updateById: async (id, newCar) => {
+        const Car = connection.getModel('Car');
+        let one = Car.update(newCar,{
+            where: {
+                id: id
+            }
+        })
+        return one
     }
 };
 
