@@ -4,10 +4,10 @@ const path = require('path');
 
 
 
-module.exports = (() => {
+module.exports = ( () => {
     let instance;
     function initConnection() {
-        const client = new Sequelize('cars-database','root','root1', {
+        const client = new Sequelize('cars','root','root1', {
             host: 'localhost',
             dialect: 'mysql'
         });
@@ -18,22 +18,24 @@ module.exports = (() => {
             fs.readdir(path.join(process.cwd(),'database','models'),(err, files) => {
                 files.forEach(file => {
                     const [modelName] = file.split('.');
-                    console.log (require(path.join(process.cwd(),'dataBase','models', modelName))(client, DataTypes));
-                    console.log (client, DataTypes)
-                    models[modelName] = (require(path.join(process.cwd(),'database','models', modelName)))(client, DataTypes);
-                    console.log (models)
+                    models[modelName] = require(path.join(process.cwd(),'database','models', modelName))(client, DataTypes);
                 })
             });
+            console.log (models);
         }
+
         return {
             setModels: () => getModels(),
-            getModels: (modelName) => models[modelName]
+            getModel: (modelName) => models[modelName]
         };
+
     }
     return {
         getInstance: () => {
             if (!instance){
                 instance = initConnection();
+                console.log ('instance' + '=>>>>>   ');
+                console.log (JSON.stringify(instance))
             }
             return instance;
         }

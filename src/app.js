@@ -1,6 +1,7 @@
 const carsRouter = require('./routes/car.router');
 const express = require('express');
 const app = express();
+
 const instance = require('./dataBase').getInstance();
 instance.setModels();
 

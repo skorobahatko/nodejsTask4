@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize');
 
 module.exports = new Sequelize(
-    'cars-database',
+    'localhost',
     'root',
     'root1',
     {
