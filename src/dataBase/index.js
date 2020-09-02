@@ -34,8 +34,6 @@ module.exports = ( () => {
         getInstance: () => {
             if (!instance){
                 instance = initConnection();
-                console.log ('instance' + '=>>>>>   ');
-                console.log (JSON.stringify(instance))
             }
             return instance;
         }
